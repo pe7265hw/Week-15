@@ -1,7 +1,12 @@
 const express = require('express')
 const apiRoutes = require('./routes/api')
+const path = require('path')
 
 const app = express()
+
+const staticFilePath = path.join(__dirname, 'client', 'dist')
+const staticFiles = express.static(staticFilePath)
+app.use('/', staticFiles) //anytime a request made to home directory, serve static files - the Vue app index.html
 
 app.use(express.json())
 app.use('/api', apiRoutes)
