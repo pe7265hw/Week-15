@@ -13,9 +13,12 @@ const createStudentModel = require('./student.js')
 //if there is no NODE_ENV set, as in on your computer, we'll use the value "development"
 const env = process.env.NODE_ENV || "development"
 
+//obtains pw from Azure (environment variable)
 const dbPassword = process.env.DB_PASSWORD
 
 const config = configJson[env] //read the configuaration object for 'development' or 'poduction
+
+//sets the password
 config.password = dbPassword
 
 const sequelize = new Sequelize(config)
